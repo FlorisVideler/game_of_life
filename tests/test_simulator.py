@@ -6,6 +6,7 @@ class TestSimulator(TestCase):
     """
     Tests for ``Simulator`` implementation.
     """
+
     def setUp(self):
         self.sim = Simulator()
 
@@ -44,3 +45,18 @@ class TestSimulator(TestCase):
         self.sim.set_world(world)
         self.assertIsInstance(self.sim.get_world(), World)
         self.assertIs(self.sim.get_world(), world)
+
+    # New tests
+    def test_next_gen(self):
+        """
+        Tests functionality of next_gen function. This function checks what needs to happen based on the rules.
+        """
+        # Reset the sim
+        self.setUp()
+        world = World(10)
+        self.sim.set_world(world)
+
+        # Set 1 cell alive and all neighours dead.
+        self.sim.get_world().set(1, 1, 1)
+        self.sim.update()
+        self.assertEqual(self.sim.get_world().get(1, 1), 0)
