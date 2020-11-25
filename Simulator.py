@@ -29,7 +29,18 @@ class Simulator:
 
         # TODO: Do something to evolve the generation
 
-        return self.world
+        return self.next_gen()
+
+    def next_gen(self) -> World:
+        next_world = self.world
+
+        print(self.world.get_neighbours(0, 0))
+
+        for x in range(self.world.width):
+            for y in range(self.world.height):
+                next_world.set(x, y, 0)
+
+        return next_world
 
     def get_generation(self):
         """
