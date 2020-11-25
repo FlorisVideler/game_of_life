@@ -1,6 +1,7 @@
 import numpy as np
 from typing import List
 
+
 class World:
     """
     Data structure for representing Game of Life worlds.
@@ -32,7 +33,7 @@ class World:
             return -1
         return self.world[y][x]
 
-    def set(self, x: int, y: int, value:int = 1) -> None:
+    def set(self, x: int, y: int, value: int = 1) -> None:
         """
         Sets the state of ``(x, y)`` to the given value.
 
@@ -44,7 +45,7 @@ class World:
             return
         self.world[y][x] = value
 
-    def get_neighbours(self, x: int, y:int) -> List[int]:
+    def get_neighbours(self, x: int, y: int) -> List[int]:
         """
         Returns a list of values for the 8 neighbours of location ``(x, y)``.
 
@@ -53,17 +54,17 @@ class World:
         :return: ``List`` of integers representing the values of the neighbours of ``(x, y)``.
         """
         neighbour_values = []
-        for nx in range(x-1,x+2):
-            for ny in range(y-1,y+2):
+        for nx in range(x - 1, x + 2):
+            for ny in range(y - 1, y + 2):
                 if not (nx is x and ny is y):
-                    neighbour_values.append(self.world[ny%self.height][nx%self.width])
+                    neighbour_values.append(self.world[ny % self.height][nx % self.width])
         return neighbour_values
 
     def __str__(self):
-        print('-'*self.width*4)
+        print('-' * self.width * 4)
         for row in self.world:
             print('|', end=" ")
             for column in row:
                 print(column, end=" | ")
             print()
-            print('-'*self.width*4)
+            print('-' * self.width * 4)
