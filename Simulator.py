@@ -42,6 +42,8 @@ class Simulator:
                 # Dead
                 if neighbours.count(0) > 6:
                     next_world.set(x, y, 0)
+                else:
+                    next_world.set(x, y, 0)
 
         return next_world
 
