@@ -46,20 +46,26 @@ class TestSimulator(TestCase):
         self.assertIsInstance(self.sim.get_world(), World)
         self.assertIs(self.sim.get_world(), world)
 
-    # New tests
-    def test_next_gen(self):
-        """
-        Tests functionality of next_gen function. This function checks what needs to happen based on the rules.
-        """
+    def reset_sim(self):
         # Reset the sim
         self.setUp()
         world = World(10)
         self.sim.set_world(world)
 
+    # New tests
+    def test_next_gen(self):
+        """
+        Tests functionality of next_gen function. This function checks what needs to happen based on the rules.
+        """
+
+        self.reset_sim()
+
         # Set 1 cell alive and all neighours dead.
         self.sim.get_world().set(1, 1, 1)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
+
+        self.reset_sim()
 
         # Set 1 cell alive and more than 3 alive
         self.sim.get_world().set(1, 1, 1)
@@ -69,3 +75,23 @@ class TestSimulator(TestCase):
         self.sim.get_world().set(2, 1, 1)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
+
+        self.reset_sim()
+
+        # Set 2 cells alive (survive)
+        self.sim.get_world().set(1, 1, 1)
+        self.sim.get_world().set(0, 0, 1)
+        self.sim.get_world().set(1, 0, 1)
+        self.sim.update()
+        self.assertEqual(self.sim.get_world().get(1, 1), 1)
+
+        self.reset_sim()
+
+        # Set 2 cells alive (birth)
+        self.sim.get_world().set(1, 1, 0)
+        self.sim.get_world().set(0, 0, 1)
+        self.sim.get_world().set(1, 0, 1)
+        self.sim.update()
+        self.assertEqual(self.sim.get_world().get(1, 1), 1)
+
+        self.reset_sim()
