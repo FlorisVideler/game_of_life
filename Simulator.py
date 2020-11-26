@@ -22,7 +22,7 @@ class Simulator:
 
 
     def parse_rule(self) -> dict:
-        return {}
+        return {'b': [3], 's': [2, 3]}
 
     def update(self) -> World:
         """
