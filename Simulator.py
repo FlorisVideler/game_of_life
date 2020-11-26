@@ -40,9 +40,7 @@ class Simulator:
             for y in range(next_world.height):
                 neighbours = self.world.get_neighbours(x, y)
                 # Dead
-                if neighbours.count(0) > 6:
-                    next_world.set(x, y, 0)
-                else:
+                if neighbours.count(0) > 6 or neighbours.count(0) < 5:
                     next_world.set(x, y, 0)
 
         return next_world
