@@ -96,7 +96,7 @@ class TestSimulator(TestCase):
 
     def test_parse_rule(self):
         sim = Simulator(rule='b3s23')
-        self.assertEqual(sim.parse_rule(), {'b': [3], 's': [2, 3]})
+        self.assertEqual(sim.rule, {'b': [3], 's': [2, 3]})
 
         sim = Simulator(rule='b012345678s012')
-        self.assertEqual(sim.parse_rule(), {'b': [0, 1, 2, 3, 4, 5, 6, 7, 8], 's': [0, 1, 2]})
+        self.assertEqual(sim.rule, {'b': [0, 1, 2, 3, 4, 5, 6, 7, 8], 's': [0, 1, 2]})
