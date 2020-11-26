@@ -26,6 +26,12 @@ class Simulator:
             self.rule = self.parse_rule(rule)
 
     def parse_rule(self, rule: str) -> dict:
+        """
+        Parses the string of a simulation.
+
+        :param rule: Rule string to parse
+        :return: The rule in dict format
+        """
         print('rule', rule)
         try:
             b_split = rule.split('b')
@@ -51,6 +57,11 @@ class Simulator:
         return next_world
 
     def next_gen(self) -> World:
+        """
+        Checks what needs to happen to all the cells based on the rules.
+
+        :return: New state of the new world.
+        """
         next_world = copy.deepcopy(self.world)
 
         for x in range(next_world.width):
