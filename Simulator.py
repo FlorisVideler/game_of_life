@@ -20,8 +20,12 @@ class Simulator:
         else:
             self.world = world
 
+        if rule == None:
+            self.rule = {'b': [3], 's': [2, 3]}
+        else:
+            self.rule = self.parse_rule(rule)
 
-    def parse_rule(self) -> dict:
+    def parse_rule(self, rule) -> dict:
         return {'b': [3], 's': [2, 3]}
 
     def update(self) -> World:
