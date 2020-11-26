@@ -8,7 +8,7 @@ class Simulator:
     Read https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life for an introduction to Conway's Game of Life.
     """
 
-    def __init__(self, world=None):
+    def __init__(self, world=None, rule=None):
         """
         Constructor for Game of Life simulator.
 
@@ -19,6 +19,10 @@ class Simulator:
             self.world = World(20)
         else:
             self.world = world
+
+
+    def parse_rule(self) -> dict:
+        return {}
 
     def update(self) -> World:
         """

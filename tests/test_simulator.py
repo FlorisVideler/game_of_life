@@ -93,3 +93,7 @@ class TestSimulator(TestCase):
         self.sim.get_world().set(2, 0, 1)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 1)
+
+    def test_parse_rule(self):
+        sim = Simulator(rule='b3s23')
+        self.assertEqual(sim.parse_rule(), {'b': [3], 's': [2, 3]})
