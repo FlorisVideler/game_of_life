@@ -15,12 +15,12 @@ class Simulator:
         :param world: (optional) environment used to simulate Game of Life.
         """
         self.generation = 0
-        if world == None:
+        if world is None:
             self.world = World(20)
         else:
             self.world = world
 
-        if rule == None:
+        if rule is None:
             self.rule = {'b': [3], 's': [2, 3]}
         else:
             self.rule = self.parse_rule(rule)
@@ -32,7 +32,6 @@ class Simulator:
         :param rule: Rule string to parse
         :return: The rule in dict format
         """
-        print('rule', rule)
         try:
             b_split = rule.split('b')
             s_split = b_split[1].split('s')
