@@ -39,9 +39,14 @@ class Simulator:
         for x in range(next_world.width):
             for y in range(next_world.height):
                 neighbours = self.world.get_neighbours(x, y)
-                # Dead
+
                 if neighbours.count(0) > 6 or neighbours.count(0) < 5:
+                    # Dead
                     next_world.set(x, y, 0)
+                elif neighbours.count(0) == 5 and self.world.get(x, y) == 0:
+                    # birth
+                    next_world.set(x, y, 1)
+                # There is no else, the other option is to do nothing (survive)
 
         return next_world
 

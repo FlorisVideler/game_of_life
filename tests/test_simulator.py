@@ -87,11 +87,9 @@ class TestSimulator(TestCase):
 
         self.reset_sim()
 
-        # Set 2 cells alive (birth)
-        self.sim.get_world().set(1, 1, 0)
+        # Set 3 cells alive (birth)
         self.sim.get_world().set(0, 0, 1)
         self.sim.get_world().set(1, 0, 1)
+        self.sim.get_world().set(2, 0, 1)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 1)
-
-        self.reset_sim()
