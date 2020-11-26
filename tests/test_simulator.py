@@ -60,3 +60,11 @@ class TestSimulator(TestCase):
         self.sim.get_world().set(1, 1, 1)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
+
+        # Set 1 cell alive and more than 3 alive
+        self.sim.get_world().set(1, 1, 1)
+        self.sim.get_world().set(0, 0, 1)
+        self.sim.get_world().set(1, 0, 1)
+        self.sim.get_world().set(2, 0, 1)
+        self.sim.get_world().set(2, 1, 1)
+        self.assertEqual(self.sim.get_world().get(1, 1), 0)
