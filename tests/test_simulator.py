@@ -67,4 +67,5 @@ class TestSimulator(TestCase):
         self.sim.get_world().set(1, 0, 1)
         self.sim.get_world().set(2, 0, 1)
         self.sim.get_world().set(2, 1, 1)
+        self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
