@@ -26,19 +26,23 @@ class Simulator:
         :return: New state of the world.
         """
         self.generation += 1
-
+        next_world = self.next_gen()
+        self.world = next_world
         # TODO: Do something to evolve the generation
 
-        return self.next_gen()
+        return next_world
 
     def next_gen(self) -> World:
-        next_world = self.world
-
-        print(self.world.get_neighbours(0, 0))
-
+        next_world = self.world.world
+        print(next_world[1, 1])
+        print(self.world.get(1, 1))
         for x in range(self.world.width):
             for y in range(self.world.height):
-                next_world.set(x, y, 0)
+                neighbours = self.world.get_neighbours(x, y)
+                if neighbours.count(0) > 7:
+                    next_world[x, y] = 0
+        print(next_world.get(1, 1))
+        print(self.world.get(1, 1))
 
         return next_world
 
