@@ -1,4 +1,5 @@
 from World import *
+import copy
 
 
 class Simulator:
@@ -33,16 +34,14 @@ class Simulator:
         return next_world
 
     def next_gen(self) -> World:
-        next_world = self.world.world
-        print(next_world[1, 1])
-        print(self.world.get(1, 1))
-        for x in range(self.world.width):
-            for y in range(self.world.height):
+        next_world = copy.deepcopy(self.world)
+
+        for x in range(next_world.width):
+            for y in range(next_world.height):
                 neighbours = self.world.get_neighbours(x, y)
-                if neighbours.count(0) > 7:
-                    next_world[x, y] = 0
-        print(next_world.get(1, 1))
-        print(self.world.get(1, 1))
+                # Dead
+                if neighbours.count(0) > 6:
+                    next_world.set(x, y, 0)
 
         return next_world
 
