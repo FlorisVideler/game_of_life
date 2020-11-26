@@ -25,8 +25,17 @@ class Simulator:
         else:
             self.rule = self.parse_rule(rule)
 
-    def parse_rule(self, rule) -> dict:
-        return {'b': [3], 's': [2, 3]}
+    def parse_rule(self, rule: str) -> dict:
+        print('rule', rule)
+        try:
+            b_split = rule.split('b')
+            s_split = b_split[1].split('s')
+            b = s_split[0]
+            s = s_split[1]
+            return {'b': [int(char) for char in b], 's': [int(char) for char in s]}
+        except:
+            # Return default rule
+            return {'b': [3], 's': [2, 3]}
 
     def update(self) -> World:
         """
