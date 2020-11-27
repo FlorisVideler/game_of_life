@@ -33,7 +33,7 @@ class Simulator:
         :return: The rule in dict format
         """
         try:
-            b_split = rule.split('b')
+            b_split = rule.lower.split('b')
             s_split = b_split[1].split('s')
             b = s_split[0]
             s = s_split[1]
