@@ -67,13 +67,14 @@ class Simulator:
             for y in range(next_world.height):
                 neighbours = self.world.get_neighbours(x, y)
 
-                if neighbours.count(0) > 6 or neighbours.count(0) < 5:
+                not_dead = sum(i > 0 for i in neighbours)
+
+                if not_dead in self.rule['b'] + self.rule['s']:
+                    if self.world.get(x, y) == 0 and not_dead in self.rule['b']:
+                        next_world.set(x, y, 1)
+                else:
                     # Dead
                     next_world.set(x, y, 0)
-                elif neighbours.count(0) == 5 and self.world.get(x, y) == 0:
-                    # birth
-                    next_world.set(x, y, 1)
-                # There is no else, the other option is to do nothing (survive)
 
         return next_world
 

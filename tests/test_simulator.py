@@ -109,3 +109,4 @@ class TestSimulator(TestCase):
         sim.get_world().set(1, 1, 0)
         sim.update()
         self.assertEqual(sim.get_world().get(1, 1), 1)
+
