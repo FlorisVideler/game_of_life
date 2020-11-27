@@ -61,38 +61,38 @@ class TestSimulator(TestCase):
         self.reset_sim()
 
         # Set 1 cell alive and all neighours dead.
-        self.sim.get_world().set(1, 1, 1)
+        self.sim.get_world().set(1, 1, 6)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
 
         self.reset_sim()
 
         # Set 1 cell alive and more than 3 alive
-        self.sim.get_world().set(1, 1, 1)
-        self.sim.get_world().set(0, 0, 1)
-        self.sim.get_world().set(1, 0, 1)
-        self.sim.get_world().set(2, 0, 1)
-        self.sim.get_world().set(2, 1, 1)
+        self.sim.get_world().set(1, 1, 6)
+        self.sim.get_world().set(0, 0, 6)
+        self.sim.get_world().set(1, 0, 6)
+        self.sim.get_world().set(2, 0, 6)
+        self.sim.get_world().set(2, 1, 6)
         self.sim.update()
         self.assertEqual(self.sim.get_world().get(1, 1), 0)
 
         self.reset_sim()
 
         # Set 2 cells alive (survive)
-        self.sim.get_world().set(1, 1, 1)
-        self.sim.get_world().set(0, 0, 1)
-        self.sim.get_world().set(1, 0, 1)
+        self.sim.get_world().set(1, 1, 6)
+        self.sim.get_world().set(0, 0, 6)
+        self.sim.get_world().set(1, 0, 6)
         self.sim.update()
-        self.assertEqual(self.sim.get_world().get(1, 1), 1)
+        self.assertEqual(self.sim.get_world().get(1, 1), 6)
 
         self.reset_sim()
 
         # Set 3 cells alive (birth)
-        self.sim.get_world().set(0, 0, 1)
-        self.sim.get_world().set(1, 0, 1)
-        self.sim.get_world().set(2, 0, 1)
+        self.sim.get_world().set(0, 0, 6)
+        self.sim.get_world().set(1, 0, 6)
+        self.sim.get_world().set(2, 0, 6)
         self.sim.update()
-        self.assertEqual(self.sim.get_world().get(1, 1), 1)
+        self.assertEqual(self.sim.get_world().get(1, 1), 6)
 
     def test_parse_rule(self):
         sim = Simulator(rule='b3s23')
@@ -106,7 +106,6 @@ class TestSimulator(TestCase):
 
     def test_rule_implementation(self):
         sim = Simulator(rule='b012345678s012')
-        sim.get_world().set(1, 1, 0)
         sim.update()
-        self.assertEqual(sim.get_world().get(1, 1), 1)
+        self.assertEqual(sim.get_world().get(1, 1), 6)
 
