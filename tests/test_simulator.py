@@ -103,3 +103,9 @@ class TestSimulator(TestCase):
 
         sim = Simulator(rule='q63535t444')
         self.assertEqual(sim.rule, {'b': [3], 's': [2, 3]})
+
+    def test_rule_implementation(self):
+        sim = Simulator(rule='b012345678s012')
+        sim.get_world().set(1, 1, 0)
+        sim.update()
+        self.assertEqual(sim.get_world().get(1, 1), 1)
