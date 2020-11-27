@@ -33,7 +33,7 @@ class Simulator:
         :return: The rule in dict format
         """
         try:
-            b_split = rule.lower.split('b')
+            b_split = rule.lower().split('b')
             s_split = b_split[1].split('s')
             b = s_split[0]
             s = s_split[1]
@@ -71,7 +71,7 @@ class Simulator:
 
                 if not_dead in self.rule['b'] + self.rule['s']:
                     if self.world.get(x, y) == 0 and not_dead in self.rule['b']:
-                        next_world.set(x, y, 1)
+                        next_world.set(x, y, 6)
                 else:
                     # Dead
                     next_world.set(x, y, 0)
